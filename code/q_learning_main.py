@@ -37,6 +37,7 @@ def act_loop(env, agent, num_episodes):
                 agent.report()
                 break
 
+    agent.report()
     env.close()
 
 
@@ -50,9 +51,8 @@ if __name__ == "__main__":
     else:
         raise("Qtable only works for discrete observations")
 
-
     discount = DEFAULT_DISCOUNT
-    ql = QLearner(num_o, num_a, discount) #<- QTable
+    ql = QLearner(env, num_o, num_a, discount) #<- QTable
     act_loop(env, ql, NUM_EPISODES)
 
 
