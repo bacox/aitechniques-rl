@@ -23,7 +23,7 @@ def act_loop(env, agent, num_episodes):
                 agent.report()
                 print("state:", state)
 
-            action = agent.select_action(state, t)
+            action = agent.select_action(state, episode)
             new_state, reward, done, info = env.step(action)
             if printing:
                 print("act:", action)
