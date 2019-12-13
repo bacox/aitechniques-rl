@@ -23,6 +23,9 @@ MAPS = {
     "theAlley": [
         "S...H...H...G"
     ],
+    # "theAlley": [
+    #     "SG"
+    # ],
     "walkInThePark": [
         "S.......",
         ".....H..",
@@ -188,7 +191,7 @@ class DrunkenWalkEnv(discrete.DiscreteEnv):
                     li = P[s][a]
                     if letter in b'G':
                         #when we are at goal, we reset with prob. 1
-                        li.append((1.0, s, 42, True))
+                        li.append((1.0, s, 0, True))
                         #really, this should not be happening, since we get done
                         #when transitioning TO the goal state (not from it).
                     if letter in b'H':
