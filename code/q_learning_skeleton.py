@@ -2,11 +2,11 @@ import random
 import math
 import sys
 
-NUM_EPISODES = 1000
+NUM_EPISODES = 10000
 MAX_EPISODE_LENGTH = 500
 
 DEFAULT_DISCOUNT = 0.9
-EPSILON = 0.05
+EPSILON = 0.9
 LEARNINGRATE = 0.1
 
 
@@ -42,6 +42,8 @@ class QLearner():
             self.q_values[(state, action)] = (1 - LEARNINGRATE) * q_old + LEARNINGRATE * reward
 
         pass
+
+
 
     def select_action(self, state): # You can add more arguments if you want
         """
@@ -88,6 +90,7 @@ class QLearner():
         """
         print("--AGENT REPORT --")
         print(self.policy_map())
+        print(self.q_values)
 
     def policy_map(self):
         """
