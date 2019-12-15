@@ -1,13 +1,14 @@
 import random
-import math
-import sys
+import numpy as np
 
 NUM_EPISODES = 10000
 MAX_EPISODE_LENGTH = 500
 
 DEFAULT_DISCOUNT = 0.9
-EPSILON = 0.9
+EPSILON = 0.05
+EPSILON_MAX = 1.0
 LEARNINGRATE = 0.1
+exploration_decay_rate = 0.01
 
 
 class QLearner():
@@ -43,9 +44,10 @@ class QLearner():
 
         pass
 
+    def get_exploration_rate(self, episode):
+        return EPSILON + (EPSILON_MAX - EPSILON) * np.exp(-exploration_decay_rate * episode)
 
-
-    def select_action(self, state): # You can add more arguments if you want
+    def select_action(self, state, episode): # You can add more arguments if you want
         """
         Returns an action, selected based on the current state
         """
@@ -53,7 +55,7 @@ class QLearner():
         random_prob = random.uniform(0, 1)
 
         # At epsilon probability, we perform a random action
-        if random_prob <= EPSILON:
+        if random_prob <= self.get_exploration_rate(episode):
             return random.randint(0, self.num_actions - 1)
 
         # Otherwise, perform the best possible action
