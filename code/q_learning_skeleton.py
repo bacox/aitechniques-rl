@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-NUM_EPISODES = 1000
+NUM_EPISODES = 10000
 MAX_EPISODE_LENGTH = 500
 
 DEFAULT_DISCOUNT = 0.9
@@ -92,6 +92,7 @@ class QLearner():
         """
         print("--AGENT REPORT --")
         print(self.policy_map())
+        print(self.q_values)
 
     def policy_map(self):
         """
